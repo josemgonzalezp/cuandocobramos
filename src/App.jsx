@@ -43,11 +43,11 @@ export default function App() {
     };
 
     return (
-        <main className="md:container md:mx-auto grid items-start min-h-screen grid-rows-[auto,1fr,auto] p-4 font-sans antialiased bg-gradient-to-br from-sky-500 to-indigo-500">
-            <header className="flex justify-between items-center">
+        <main className="md:container md:mx-auto items-center flex flex-col h-screen p-4 font-sans antialiased bg-gradient-to-br from-sky-500 to-indigo-500 w-full">
+            <header className="h-10 flex justify-between items-center">
                 <span className="text-3xl font-bold">Cuando Cobramos</span>
             </header>
-            <section className="py-10 grid">
+            <section className="mb-auto py-10 grid">
                 <div className="flex flex-row justify-between items-center">
                     <span
                         className="text-2xl hover:cursor-pointer hover:text-blue-800"
@@ -78,11 +78,9 @@ export default function App() {
                         })}
                     </ul>
                 </div>
-                <div className="transition-all flex flex-row justify-center">
-                    <img src={israel} alt="Donate" />;
-                </div>
             </section>
-            <footer className="text-center leading-[4rem] text-muted-foreground">
+            <footer className="h-30 text-center leading-[4rem] text-muted-foreground">
+                <img src={israel} alt="Donate" />
                 {new Date().getFullYear()} Josecito
             </footer>
         </main>
