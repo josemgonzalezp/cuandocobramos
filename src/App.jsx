@@ -43,11 +43,11 @@ export default function App() {
     };
 
     return (
-        <main className="md:container md:mx-auto items-center flex flex-col h-screen p-4 font-sans antialiased bg-gradient-to-br from-sky-500 to-indigo-500 w-full">
+        <main className="h-screen w-full flex flex-col items-center  p-4 bg-gradient-to-br from-sky-500 to-indigo-500">
             <header className="h-10 flex justify-between items-center">
                 <span className="text-3xl font-bold">Cuando Cobramos</span>
             </header>
-            <section className="mb-auto py-10 grid">
+            <section className="w-full mb-auto py-10 grid">
                 <div className="flex flex-row justify-between items-center">
                     <span
                         className="text-2xl hover:cursor-pointer hover:text-blue-800"
@@ -80,7 +80,7 @@ export default function App() {
                 </div>
             </section>
             <footer className="h-30 text-center leading-[4rem] text-muted-foreground">
-                <img src={israel} alt="Donate" />
+                <img src={israel} alt="Donate" height={10} />
                 {new Date().getFullYear()} Josecito
             </footer>
         </main>
