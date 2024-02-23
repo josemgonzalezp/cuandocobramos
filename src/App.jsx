@@ -4,7 +4,7 @@ import moment from "moment";
 import israel from "./assets/israel.jpg";
 
 const getFechaCobro = (fechaSearch) => {
-    const dateCobrar = moment(fechaSearch, "YYYY-MM-DD").endOf("month");
+    const dateCobrar = fechaSearch.endOf("month");
     let days = 0;
 
     while (days < 1) {
@@ -21,13 +21,31 @@ const getFechaCobro = (fechaSearch) => {
 const getDias = (fechaCobro) => {
     const today = moment();
     const days = fechaCobro.diff(today, "days");
-    if (days < 0) {
-        return "Pasaron " + Math.abs(days).toString() + " dias";
+    return days;
+};
+
+const getText = (fechaCobro) => {
+    const dFechaCobro = getFechaCobro(moment(fechaCobro, "YYYY-MM-DD"));
+    const dias = getDias(dFechaCobro);
+    let texto = "";
+    let coma = "";
+    if (dias === 0) {
+        texto = "HOY COBRAS";
+    } else {
+        if (dias > 0) {
+            texto = "FALTAN " + Math.abs(dias).toString() + " DIAS PARA COBRAR";
+        } else {
+            texto =
+                "PASARON " +
+                Math.abs(dias).toString() +
+                " DIAS DESDE QUE COBRASTE";
+        }
     }
-    if (days > 0) {
-        return "Faltan " + Math.abs(days).toString() + " dias";
-    }
-    return `Es HOY`;
+    data.conceptos[dFechaCobro.format("MM")].map((concepto) => {
+        texto = texto + coma + " " + concepto.toUpperCase();
+        coma = ",";
+    });
+    return texto;
 };
 
 export default function App() {
@@ -43,14 +61,16 @@ export default function App() {
     };
 
     return (
-        <main className="h-screen w-full flex flex-col items-center  p-4 bg-gradient-to-br from-sky-500 to-indigo-500">
-            <header className="h-10 flex justify-between items-center">
-                <span className="text-3xl font-bold">Cuando Cobramos</span>
+        <main className="h-screen w-full flex flex-col p-4 bg-red-600">
+            <header className="h-10 flex items-start">
+                <span className="text-2xl font-extrabold font-sans italic text-white">
+                    CUANDO COBRAMOS
+                </span>
             </header>
             <section className="w-full mb-auto py-10 grid">
                 <div className="flex flex-row justify-between items-center">
                     <span
-                        className="text-2xl hover:cursor-pointer hover:text-blue-800"
+                        className="text-2xl hover:cursor-pointer hover:text-red-300"
                         onClick={() => handleMonthPicker(1)}
                     >
                         Anterior
@@ -59,24 +79,16 @@ export default function App() {
                         {moment(fechaSearch, "YYYY-MM-DD").format("YYYY-MM")}
                     </span>
                     <span
-                        className="text-2xl hover:cursor-pointer hover:text-blue-800"
+                        className="text-2xl hover:cursor-pointer hover:text-red-300"
                         onClick={() => handleMonthPicker(-1)}
                     >
                         Siguiente
                     </span>
                 </div>
-                <div className="py-10 text-3xl text-white text-center">
-                    <h1>{getFechaCobro(fechaSearch).format("DD/MM/YYYY")}</h1>
-                    <h3>{getDias(getFechaCobro(fechaSearch))}</h3>
-                </div>
-                <div className="py-10 text-3xl text-white text-center">
-                    <ul>
-                        {data.conceptos[
-                            moment(fechaSearch, "YYYY-MM-DD").format("MM")
-                        ].map((concepto, index) => {
-                            return <li key={index}>{concepto}</li>;
-                        })}
-                    </ul>
+                <div className="py-10 text-center text-wrap">
+                    <span className="text-5xl font-extrabold font-sans text-white antialiased tracking-widest">
+                        {getText(fechaSearch)}
+                    </span>
                 </div>
             </section>
             <footer className="h-30 text-center leading-[4rem] text-muted-foreground">
