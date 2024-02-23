@@ -2,6 +2,8 @@ import { useState } from "react";
 import * as data from "./data/data.json";
 import moment from "moment";
 import israel from "./assets/israel.jpg";
+import ArrowLeft from "./components/ArrowLeft";
+import ArrowRight from "./components/ArrowRight";
 
 const getFechaCobro = (fechaSearch) => {
     const dateCobrar = fechaSearch.endOf("month");
@@ -57,7 +59,6 @@ export default function App() {
         const newDate = moment(fechaSearch, "YYYY-MM-DD");
         newDate.subtract(amount, "months");
         setFechaSearch(newDate.format("YYYY-MM-DD"));
-        console.log(moment(newDate, "YYYY-MM-DD").format("MM"));
     };
 
     return (
@@ -69,21 +70,15 @@ export default function App() {
             </header>
             <section className="w-full mb-auto py-10 grid">
                 <div className="flex flex-row justify-between items-center">
-                    <span
-                        className="text-2xl hover:cursor-pointer hover:text-red-300"
-                        onClick={() => handleMonthPicker(1)}
-                    >
-                        Anterior
-                    </span>
+                    <button onClick={() => handleMonthPicker(1)}>
+                        <ArrowLeft />
+                    </button>
                     <span className="text-3xl font-bold text-white">
                         {moment(fechaSearch, "YYYY-MM-DD").format("YYYY-MM")}
                     </span>
-                    <span
-                        className="text-2xl hover:cursor-pointer hover:text-red-300"
-                        onClick={() => handleMonthPicker(-1)}
-                    >
-                        Siguiente
-                    </span>
+                    <button onClick={() => handleMonthPicker(-1)}>
+                        <ArrowRight />
+                    </button>
                 </div>
                 <div className="py-10 text-center text-wrap">
                     <span className="text-5xl font-extrabold font-sans text-white antialiased tracking-widest">
@@ -91,9 +86,11 @@ export default function App() {
                     </span>
                 </div>
             </section>
-            <footer className="h-30 text-center leading-[4rem] text-muted-foreground">
+            <footer className="h-30 flex flex-col justify-normal items-center">
                 <img src={israel} alt="Donate" height={10} />
-                {new Date().getFullYear()} Josecito
+                <span className="leading-[4rem]">
+                    {new Date().getFullYear()} Josecito
+                </span>
             </footer>
         </main>
     );
