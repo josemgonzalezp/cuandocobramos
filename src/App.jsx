@@ -22,10 +22,10 @@ const getDias = (fechaCobro) => {
     const today = moment();
     const days = fechaCobro.diff(today, "days");
     if (days < 0) {
-        return "Pasaron " + days.toString() + " dias";
+        return "Pasaron " + Math.abs(days).toString() + " dias";
     }
     if (days > 0) {
-        return "Faltan " + days.toString() + " dias";
+        return "Faltan " + Math.abs(days).toString() + " dias";
     }
     return `Es HOY`;
 };
