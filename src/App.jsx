@@ -43,14 +43,14 @@ export default function App() {
     };
 
     return (
-        <main className="container grid items-start min-h-screen grid-rows-[auto,1fr,auto] p-4 font-sans antialiased bg-gradient-to-br from-sky-500 to-indigo-500">
+        <main className="md:container md:mx-auto grid items-start min-h-screen grid-rows-[auto,1fr,auto] p-4 font-sans antialiased bg-gradient-to-br from-sky-500 to-indigo-500">
             <header className="flex justify-between items-center">
                 <span className="text-3xl font-bold">Cuando Cobramos</span>
             </header>
             <section className="py-10 grid">
                 <div className="flex flex-row justify-between items-center">
                     <span
-                        className="text-2xl"
+                        className="text-2xl hover:cursor-pointer hover:text-blue-800"
                         onClick={() => handleMonthPicker(1)}
                     >
                         Anterior
@@ -59,7 +59,7 @@ export default function App() {
                         {moment(fechaSearch, "YYYY-MM-DD").format("YYYY-MM")}
                     </span>
                     <span
-                        className="text-2xl"
+                        className="text-2xl hover:cursor-pointer hover:text-blue-800"
                         onClick={() => handleMonthPicker(-1)}
                     >
                         Siguiente
