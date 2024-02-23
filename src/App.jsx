@@ -78,7 +78,7 @@ export default function App() {
                         })}
                     </ul>
                 </div>
-                <div className="transition-all">
+                <div className="transition-all flex flex-row justify-center">
                     <img src={israel} alt="Donate" />;
                 </div>
             </section>
