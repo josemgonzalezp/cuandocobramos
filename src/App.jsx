@@ -62,11 +62,19 @@ export default function App() {
     };
 
     return (
-        <main className="h-screen w-full flex flex-col p-4 bg-red-600">
-            <header className="h-10 flex items-start">
-                <span className="text-2xl font-extrabold font-sans italic text-white">
+        <main className="h-screen w-full flex flex-col p-4 bg-[#A71B08]">
+            <header className="h-10 flex items-baseline justify-between">
+                <span className="text-2xl font-extrabold font-Impact italic text-white tracking-wide text-shadow">
                     CUANDO COBRAMOS
                 </span>
+                <div className="flex flex-col w-40">
+                    <span className="text-xl font-Impact text-blue-600 bg-white rounded-sm text-center">
+                        BCBA
+                    </span>
+                    <span className="text-xl font-Impact text-[#EAEDBB] text-center">
+                        {moment().format("HH:mm")}
+                    </span>
+                </div>
             </header>
             <section className="w-full mb-auto py-10 grid">
                 <div className="flex flex-row justify-between items-center">
@@ -81,7 +89,7 @@ export default function App() {
                     </button>
                 </div>
                 <div className="py-10 text-center text-wrap">
-                    <span className="text-5xl font-extrabold font-sans text-white antialiased tracking-widest">
+                    <span className="text-5xl font-extrabold font-Impact text-white antialiased tracking-widest text-shadow">
                         {getText(fechaSearch)}
                     </span>
                 </div>
