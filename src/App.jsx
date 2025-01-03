@@ -4,6 +4,7 @@ import moment from "moment";
 import israel from "./assets/israel.jpg";
 import ArrowLeft from "./components/ArrowLeft";
 import ArrowRight from "./components/ArrowRight";
+import { Header } from "./components/Header";
 
 const getFechaCobro = (fechaSearch) => {
     const dateCobrar = fechaSearch.endOf("month");
@@ -47,6 +48,7 @@ const getText = (fechaCobro) => {
         texto = texto + coma + " " + concepto.toUpperCase();
         coma = ",";
     });
+    texto = texto + " - " + dFechaCobro.format("DD/MM/YYYY");
     return texto;
 };
 
@@ -63,33 +65,27 @@ export default function App() {
 
     return (
         <main className="h-screen w-full flex flex-col p-4 bg-[#A71B08]">
-            <header className="h-10 flex items-baseline justify-between">
-                <span className="text-2xl font-extrabold font-Impact italic text-white tracking-wide text-shadow">
-                    CUANDO COBRAMOS
-                </span>
-                <div className="flex flex-col w-40">
-                    <span className="text-xl font-Impact text-blue-600 bg-white rounded-sm text-center">
-                        BCBA
-                    </span>
-                    <span className="text-xl font-Impact text-[#EAEDBB] text-center">
-                        {moment().format("HH:mm")}
-                    </span>
-                </div>
-            </header>
+            <Header />
             <section className="w-full mb-auto py-10 grid">
                 <div className="flex flex-row justify-between items-center">
-                    <button onClick={() => handleMonthPicker(1)}>
+                    <button
+                        onClick={() => handleMonthPicker(1)}
+                        className="hover:scale-150 hover:opacity-50 transition: all 0.3s ease-in-out"
+                    >
                         <ArrowLeft />
                     </button>
                     <span className="text-3xl font-bold text-white">
                         {moment(fechaSearch, "YYYY-MM-DD").format("YYYY-MM")}
                     </span>
-                    <button onClick={() => handleMonthPicker(-1)}>
+                    <button
+                        onClick={() => handleMonthPicker(-1)}
+                        className="hover:scale-150 hover:opacity-50 transition: all 0.3s ease-in-out"
+                    >
                         <ArrowRight />
                     </button>
                 </div>
                 <div className="py-10 text-center text-wrap">
-                    <span className="text-5xl font-extrabold font-Impact text-white antialiased tracking-widest text-shadow">
+                    <span className="text-5xl font-extrabold font-Impact text-white antialiased tracking-widest text-shadow opacity-90">
                         {getText(fechaSearch)}
                     </span>
                 </div>
